@@ -16,8 +16,8 @@ phoenix_weather_raw.head(10)
 
 #WEATHER DATA
 #remove columns not relevant to the scope of the analysis
-indianapolis_weather_col_filtered = indianapolis_weather_raw.iloc[:,[0,4]]
-phoenix_weather_col_filtered = phoenix_weather_raw.iloc[:,[0,4]]
+indianapolis_weather_col_filtered = indianapolis_weather_raw.iloc[:,[0,2,3,4,5]]
+phoenix_weather_col_filtered = phoenix_weather_raw.iloc[:,[0,2,3,4,5]]
 
 #change "Date" columns to be datetime 
 indianapolis_weather_col_filtered['Date'] = pd.to_datetime(indianapolis_weather_col_filtered['Date'])
@@ -49,3 +49,5 @@ electricity_row_filtered = electricity_col_filtered[electricity_col_filtered['Pr
 full_data = pd.merge(electricity_row_filtered,weather_filtered, how = 'inner', 
     left_on = ['Trade date','Price hub'],
     right_on = ['Date','hub'])
+#drop duplicate columns
+full_data = full_data.drop(['Trade date','hub'])
