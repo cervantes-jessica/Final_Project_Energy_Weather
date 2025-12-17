@@ -51,3 +51,4 @@ full_data = pd.merge(electricity_row_filtered,weather_filtered, how = 'inner',
     right_on = ['Date','hub'])
 #drop duplicate columns
 full_data = full_data.drop(['Trade date','hub'])
+full_data.to_csv('full_data.csv')
