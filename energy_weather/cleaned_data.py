@@ -3,9 +3,14 @@ import pandas as pd
 import numpy as np
 
 #load data
-electricity_raw = pd.read_csv("../data/raw/ice_electric-2025.csv")
-indianapolis_weather_raw = pd.read_csv("..data/raw/Indianapolis_Weather.csv")
-phoenix_weather_raw = pd.read_csv("..data/raw/Phoenix_Weather.csv")
+electricity_raw = pd.read_csv("data/raw/ice_electric-2025.csv")
+indianapolis_weather_raw = pd.read_csv("data/raw/Indianapolis_Weather.csv")
+phoenix_weather_raw = pd.read_csv("data/raw/Phoenix_Weather.csv")
+
+#checking if data was read correctly
+electricity_raw.head(10)
+indianapolis_weather_raw.head(10)
+phoenix_weather_raw.head(10)
 
 #cleaning the individual data sets to prep for the joining
 

@@ -1,0 +1,20 @@
+# Energy & Weather Analysis Package
+
+*Eric Coons and Jessica Cervantes \| December 17, 2025*
+
+## Project Overview
+
+This package analyzes how weather patterns influence wholesale electricity prices in U.S. price hubs. The analysis covers:
+
+-   Electricity data from EIA (2025)
+-   Weather data from \[source\]
+-   Focus on Phoenix and Indianapolis price hubs as examples
+
+## Goals and Steps 
+
+1.  Clean and merge datasets
+2.  Explore relationships between weather variables (temperature, wind, precipitation) and electricity prices
+3.  Provide a simple predictive model using regression
+4.  Deploy results in a Streamlit app
+
+##
