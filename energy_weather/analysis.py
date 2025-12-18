@@ -5,6 +5,8 @@ import seaborn as sns
 import numpy as np
 import sklearn
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
 
 #read in cleaned data
 data = pd.read_csv("data/processed/energy_weather_2025.csv")
@@ -13,11 +15,6 @@ data = pd.read_csv("data/processed/energy_weather_2025.csv")
 data.head(10)
 print(data.info())
 print(data.isna().sum())
-
-#basic scatterplot
-sns.scatterplot(data=data, x='PRCP', y='High price', hue='Price hub')
-plt.title("High Price vs Precipitation")
-plt.show()
 
 # Correlation matrix
 corr = data[['High price', 'Low price','PRCP']].corr()
@@ -30,23 +27,103 @@ plt.show()
 
 
 # Features and target
-X = data[['PRCP']]
+x = data[['PRCP']]
 y = data['High price']
 
 # Fit model
 model = LinearRegression()
-model.fit(X, y)
+model.fit(x, y)
 
 # Coefficients
 print("Intercept:", model.intercept_)
-print("Coefficients:", model.coef_)
+print("Coefficients:", model.coef_[0])
 
-# Predicted values
-data['High_price_pred'] = model.predict(X)
+data['High_price_pred'] = model.predict(x)
+print("R² score:", r2_score(y, data['High_price_pred']))
 
 # Plot actual vs predicted
 sns.scatterplot(x=data['High price'], y=data['High_price_pred'])
 plt.xlabel("Actual High Price")
 plt.ylabel("Predicted High Price")
 plt.title("Actual vs Predicted High Price")
+plt.show()
+
+# Create graph and layout
+fig, axes = plt.subplots(1, 2, figsize=(14, 5), sharey=False)
+
+# High price vs PRCP
+sns.scatterplot(
+    data=data,
+    x='PRCP',
+    y='High price',
+    hue='Price hub',
+    ax=axes[0]
+)
+axes[0].set_title("High Price vs Precipitation")
+
+# Low price vs PRCP
+sns.scatterplot(
+    data=data,
+    x='PRCP',
+    y='Low price',
+    hue='Price hub',
+    ax=axes[1]
+)
+axes[1].set_title("Low Price vs Precipitation")
+
+# Layout the graphs to be shown side by side
+plt.tight_layout()
+plt.show()
+
+# Create graph
+fig, axes = plt.subplots(2, 2, figsize=(14, 10), sharex=True, sharey=False)
+
+# Subsets
+indiana = data[data['Price hub'] == 'Indiana Hub RT Peak']
+arizona = data[data['Price hub'] == 'Palo Verde Peak']
+
+# High Price
+sns.scatterplot(
+    data=indiana,
+    x='PRCP',
+    y='High price',
+    color='blue',
+    ax=axes[0, 0])
+
+axes[0, 0].set_title("Indiana: High Price vs Precipitation")
+axes[0, 0].set_ylabel("High Electricity Price (USD per MWh)")
+
+sns.scatterplot(
+    data=arizona,
+    x='PRCP',
+    y='High price',
+    color='orange',
+    ax=axes[0, 1])
+
+axes[0, 1].set_title("Arizona: High Price vs Precipitation")
+
+# Low Price 
+sns.scatterplot(
+    data=indiana,
+    x='PRCP',
+    y='Low price',
+    color='blue',
+    ax=axes[1, 0])
+
+axes[1, 0].set_title("Indiana: Low Price vs Precipitation")
+axes[1, 0].set_xlabel("Daily Precipitation (inches)")
+axes[1, 0].set_ylabel("Low Electricity Price (USD per MWh)")
+
+sns.scatterplot(
+    data=arizona,
+    x='PRCP',
+    y='Low price',
+    color='orange',
+    ax=axes[1, 1]
+)
+axes[1, 1].set_title("Arizona: Low Price vs Precipitation")
+axes[1, 1].set_xlabel("Daily Precipitation (inches)")
+
+#create grid to compare all 4 together
+plt.tight_layout()
 plt.show()
