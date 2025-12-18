@@ -54,6 +54,4 @@ As expected from previous analysis, the scatterplot does not seem to show a 1 to
 
 ## Discussion
 
-[What do these results mean? What could future analyses look into/improve upon?]
-
 We think that future analyses could give more insight into the relationship between electricity prices and weather. The hypothesis behind our analysis puts the emphasis on how weather affect electricity generation, but it is no secret that weather (specifically temperature) affects energy consumption as well, especially in the summer, as AC units draw a lot of power. Approaching this analysis with a demand-focused hypothesis could allow for insight into energy consumption trends, which would also be useful for those looking to invest in power generation.
