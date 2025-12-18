@@ -10,13 +10,12 @@ This package analyzes how weather patterns influence wholesale electricity price
 -   Weather data from NOAA (2025)
 -   Focus on Phoenix and Indianapolis price hubs as examples
 
-## Goals and Steps 
+## Goals and Steps
 
 1.  Clean and merge datasets
 2.  Explore relationships between weather variables (temperature, wind, precipitation) and electricity prices
 3.  Provide a simple predictive model using regression
 4.  Deploy results in a Streamlit app
-
 
 ## Package Tutorial (Following the Goals and Steps)
 
@@ -24,7 +23,7 @@ This package analyzes how weather patterns influence wholesale electricity price
 
 Download the wholesale electricity market data for 2025 from the [EIA website](https://www.eia.gov/electricity/wholesale/). If you want to follow our analysis exactly, the ice_electric-2025 dataset included in the package is the market data for 2025, and is what we will be using for this analysis.
 
-Decide what cities/hubs you want to analyze. If you want to follow our analysis exactly, use Indianapolis and Pheonix. We chose these locations because they are representative of two market hub locations from the EIA data. Phoenix represents a hub with a large share of solar power, and Indianapolis represents a hub with hardly any solar power, which is another reason why we selected them. If you want to do analysis on other cities, make sure that you are selecting cities close to market hubs, and that those market hubs are different! Use the map found in the EIA website linked above to see where market hubs are located. 
+Decide what cities/hubs you want to analyze. If you want to follow our analysis exactly, use Indianapolis and Pheonix. We chose these locations because they are representative of two market hub locations from the EIA data. Phoenix represents a hub with a large share of solar power, and Indianapolis represents a hub with hardly any solar power, which is another reason why we selected them. If you want to do analysis on other cities, make sure that you are selecting cities close to market hubs, and that those market hubs are different! Use the map found in the EIA website linked above to see where market hubs are located.
 
 Download the Phoenix and Indianapolis weather data from an appropriate weather station in the [NCEI Past Weather database](https://www.ncei.noaa.gov/access/past-weather/) if you are following our analysis. An appropriate station will have precipitation data included. If you previously selected different cities to the ones we selected, download historic weather data from an appropriate station in those cities.
 
@@ -34,38 +33,42 @@ In order to complete our analysis, it is important to have all the relevant data
 
 Next, run the code to clean the electricity dataset, removing unnecessary columns and renaming columns to be more concise. If you are doing analysis on Indianapolis and Phoenix, leave 'Indiana Hub RT Peak' and 'Palo Verde Peak' as valid_hubs when running the filtering of the data. Otherwise, replace these with the names of the hubs corresponding to the locations you chose, then run the filter.
 
-Once you have done this, run the code to merge the two datasets together. This code does not require any changing whether or not you selected different cities than we did. Now the data is in a clean and easily-analyzable format. Run the code to export the data to csv. 
+Once you have done this, run the code to merge the two datasets together. This code does not require any changing whether or not you selected different cities than we did. Now the data is in a clean and easily-analyzable format. Run the code to export the data to csv.
 
 ## Analyze the data
 
 ### Explore relationship between weather and electricity price
 
-Run the analysis.py file to do the following:
-Import pandas, matplotlib, seaborn, numpy, sklearn, and LinearRegression, as we will be using these to analyze the data and create visuals.
+Run the analysis.py file to do the following: Import pandas, matplotlib, seaborn, numpy, sklearn, and LinearRegression, as we will be using these to analyze the data and create visuals.
 
 Check the results of the .head(), .info() and .isna().sum sure the data is read correctly.
 
-The Seaborn scatterplot gives us an idea of the relationship between precipitation and energy price. If you are following our analysis, take note of any differences you see between the Indianapolis and Phoenix price hubs, as well as any upward or downward trends. 
+The Seaborn scatterplot gives us an idea of the relationship between precipitation and energy price. If you are following our analysis, take note of any differences you see between the Indianapolis and Phoenix price hubs, as well as any upward or downward trends.
 
-The Seaborn heatmat [insert explanation]
+The Seaborn heatmat \[insert explanation\]
 
 ### Create simple predictive model using regression
 
 Next, we will use the tools in scikitlearn to run a linear regression on the data. The tools in scikitlearn make this relatively simple, since once we specify which columns are the predictor and response, using the .fit() function generates a regression model we can use for prediction.
 
-Running the .predict() function on the predictor variable gives us a predicted price column which we can compare to the actual price to see how close the two are. If precipitation is a strong predictor of electricity prices, then these results should be pretty close when displayed in the scatterplot, resulting in points clustered around the line y=x. This would support the hypothesis that precipitation does affect electricity prices in Arizona and Indiana, although this alone would not be enough to prove it. If precipitation is not a strong predictor of electricity prices, then the model should result in a scatterplot that looks random, with no trends. This would support the hypothesis that precipitation does not significantly affect electricity prices. 
+Running the .predict() function on the predictor variable gives us a predicted price column which we can compare to the actual price to see how close the two are. If precipitation is a strong predictor of electricity prices, then these results should be pretty close when displayed in the scatterplot, resulting in points clustered around the line y=x. This would support the hypothesis that precipitation does affect electricity prices in Arizona and Indiana, although this alone would not be enough to prove it. If precipitation is not a strong predictor of electricity prices, then the model should result in a scatterplot that looks random, with no trends. This would support the hypothesis that precipitation does not significantly affect electricity prices.
 
-## Deploy results to streamlit app
+## Deploy results to Streamlit app
+
+We created a Streamlit app that allows users to explore electricity prices and weather patterns for two U.S. electricity market hubs: Indiana Hub RT Peak and Palo Verde Peak.
+
+The app enables users to:
+
+-   Select a hub to examine
+
+-   View High electricity prices over the year 2025
+
+-   View precipitation trends for the selected hub over the year
+
+-   Compare how different weather conditions may influence electricity prices in different regions
 
 ## Function Documentation
 
 ### clean_weather(df, hub_name)
 
-The clean_weather function was created to take weather data from a single weather station as recorded in the NCEI database and make it usable for our analysis. It does this by:
-- Removing leading/trailing characters, parentheses, making capitilization uniform in column names
-- Removing all columns except for those necessary for analysis (Date and Precipitation)
-- Changing the DATE column to be datetime rather than a string
-- Filtering to only include weather data from 2025
-- Adding a hub identifier to the dataframe, for easy merging with the electricity dataset
-
-
+The clean_weather function was created to take weather data from a single weather station as recorded in the NCEI database and make it usable for our analysis. It does this by: - Removing leading/trailing characters, parentheses, making capitilization uniform in column names - Removing all columns except for those necessary for analysis (Date and Precipitation) - Changing the DATE column to be datetime rather than a string - Filtering to only include weather data from 2025 - Adding a hub identifier to the dataframe, for easy merging with the electricity dataset
