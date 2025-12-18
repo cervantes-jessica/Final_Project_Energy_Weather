@@ -6,4 +6,8 @@ This project analyzes how weather patterns influence wholesale electricity price
 
 ## Data Sources
 - U.S. Energy Information Administration (EIA)
-- [insert weather source]
+- NOAA National Centers for Environmental Information (NCEI)
+
+## Github Pages Link
+
+[Insert link here]
