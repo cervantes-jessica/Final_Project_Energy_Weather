@@ -29,33 +29,31 @@ We used the linear regression fitting tools in scikitlearn to create a simple pr
 
 ## Results
 
-[](../graphs/corr_matrix.png)
+![correlation](corr_matrix.png)
 
 From the correlation matrix, combined for both Indiana and Arizona, The correlation between precipitation and high and low price is not very high, sitting at close to 0.07 for both. 
 
-[](../graphs/Price_Precip_Full.png)
+![price precipitation full](Price_Precip_Full.png)
 
 The majority of the points sitting at precipitation = 0 is to be expected, as it does not rain most days, whether you live in Indiana or Arizona. However, this does mean that we have a lower quantity of valuable data than expected, since days that it rains are the ones that actually could show a relationship between precipitation and electricity price. Despite the low amount of data points above precipitation = 0, there does appear to be a slightly positive relationship, which would indicate that an increase in precipitation would relate to a higher average electricity price.
 However, one problem with this diagnosis is that it seems that Indiana has higher electricity costs regardless of weather, and since Arizona is very dry, this might cause there to appear to be a relationship when there isn't a significant one. 
 
-[](../graphs/Price_Precip_split.png)
+![price + precipitation split](Price_Precip_split.png)
 
 Splitting this data into separate graphs for Indiana and Arizona, we see that the correlation is very weak, if present at all. 
 
-[](../graphs/Arizona_price_time.png)
-[](../graphs/Indiana_price_time.png)
+![Arizona data](Arizona_price_time.png)
+![Indiana data](Indiana_price_time.png)
 
 In looking at the price over time graphs for Arizona and Indiana, we see that summer tends to have higher prices than other times of the year. This could indicate that demand depends on weather/temperature as well, which makes sense, given the large power draw of AC units. Since sunny days are usually also hotter days, this introduces an interesting confounding variable, since hot, sunny summer days should result in more power produced by solar, but also more power consumed!
 
 The graph below is a scatterplot of the electricity prices predicted by the model vs the actual prices
-[](../graphs/actual_vs_predicted.png)
+![actual vs predicted price model](actual_vs_predicted.png)
 
-As expected from previous analysis, the scatterplot does not seem to show a 1 to 1 relationship between the two variables. This means that the model is not very good at predicting electricity prices based solely on precipitation data. 
+As expected from previous analysis, the scatterplot does not seem to show a 1 to 1 relationship between the two variables. This means that the model is not very good at predicting electricity prices, based solely on precipitation data. 
 
 ## Discussion
 
-From what we have analyzed, it would seem that if there is a relationship between precipitation and wholesale energy prices, it is either very small or the relationship is heavily confounded with other variables. Much of this could be due to the limitations of our data. Despite having about 260 observations, many of them were very similar, since precipitation is not a daily occurrence in either Arizona or Indiana. This resulted in a smaller effective dataset, from which we couldn't draw many conclusions. This problem is inherent to the topic of solar power, since any place that has a lot of solar power likely has very little variation from sunny, dry weather!
+[What do these results mean? What could future analyses look into/improve upon?]
 
-If we were to do this analysis again, there are a couple things we could do to improve it and thus show more conclusive evidence of there existing (or not existing) a relationship between weather and energy prices. Increasing the date range for our data would be an effective and simple way to increase our sample size, so that we get more data from days with precipitation. In addition, if we were to find a weather data source that provided a value for cloud coverage, we would have a variable that would have a higher quantity of useful values compared to precipitation. Finding an effective way to control for temperature would also improve the analysis, as that could help mitigate the effect of temperature on electricity demand
-
-We think that future analyses could also give more insight into the role demand plays on the relationship between electricity prices and weather. The hypothesis behind our analysis puts the emphasis on how weather affect electricity generation, but it is no secret that weather (specifically temperature) affects energy consumption as well, especially in the summer, as AC units draw a lot of power. Approaching this analysis with a demand-focused hypothesis could allow for insight into energy consumption trends, which would also be useful for those looking to invest in power generation.
+We think that future analyses could give more insight into the relationship between electricity prices and weather. The hypothesis behind our analysis puts the emphasis on how weather affect electricity generation, but it is no secret that weather (specifically temperature) affects energy consumption as well, especially in the summer, as AC units draw a lot of power. Approaching this analysis with a demand-focused hypothesis could allow for insight into energy consumption trends, which would also be useful for those looking to invest in power generation.
