@@ -21,7 +21,7 @@ corr = data[['High price', 'Low price','PRCP']].corr()
 print(corr)
 
 # Heatmap
-sns.heatmap(corr, annot=True, cmap='coolwarm')
+sns.heatmap(corr, annot=True, cmap='cool')
 plt.title("Correlation between Electricity Prices and Weather")
 plt.show()
 
@@ -127,3 +127,40 @@ axes[1, 1].set_xlabel("Daily Precipitation (inches)")
 #create grid to compare all 4 together
 plt.tight_layout()
 plt.show()
+
+
+# Date focused 
+
+#Indiana
+hub = "Indiana Hub RT Peak"
+subset = data[data["Price hub"] == hub]
+
+# Line plot
+plt.figure(figsize=(12, 6))
+sns.lineplot(data=subset, x="Trade date", y="High price")
+plt.xticks(rotation=45)
+plt.xlabel("Date")
+plt.ylabel("High Price ($/MWh)")
+plt.title(f"High Price Trend Over 2025 - {hub}")
+plt.tight_layout()
+plt.show()
+
+# Filter for Phoenix hub
+
+data['Trade date'] = pd.to_datetime(data['Trade date'])
+hub = "Palo Verde Peak"
+subset = data[data["Price hub"] == hub]
+subset['Month'] = subset['Trade date'].dt.month
+
+# Line plot
+plt.figure(figsize=(12, 6))
+sns.lineplot(data=subset, x="Trade date", y="High price", color="orange")  # optional: set color
+plt.xticks(rotation=45)
+plt.xlabel("Date")
+plt.ylabel("High Price ($/MWh)")
+plt.title(f"High Price Trend Over 2025 - {hub}")
+plt.tight_layout()
+plt.show()
+
+
+
