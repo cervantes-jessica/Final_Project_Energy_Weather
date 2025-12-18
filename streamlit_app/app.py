@@ -8,7 +8,8 @@ import matplotlib.pyplot as plt
 st.title("Weather and Electricity Prices")
 
 #intro paragraph
-st.write("Electricity prices are reported at wholesale market price hubs rather than uniformly at the state level. Because weather data is location-based, we associate each price hub with a representative geographic location (typically the state capital or a major metropolitan area near the hub). All analyses and visualizations are therefore conducted at the price hub level, rather than strictly by state boundaries.")
+st.write("For this project, we’re focusing on two electricity market hubs: Indiana Hub RT Peak and Palo Verde Peak. We chose these two because they are in very different regions of the country with distinct weather patterns: Indiana experiences temperate, seasonal weather, while Phoenix, Arizona is hot and dry with lots of solar energy production. This contrast allows us to explore how weather influences electricity prices in very different environments."
+"Use the options below to see how each hub’s electricity prices and precipitation vary throughout 2025 and to compare the differences between the two locations.")
 
 #load data in
 @st.cache_data
