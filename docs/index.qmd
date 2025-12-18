@@ -17,7 +17,7 @@ This package analyzes how weather patterns influence wholesale electricity price
 3.  Provide a simple predictive model using regression
 4.  Deploy results in a Streamlit app
 
-## Package Tutorial (Following the Goals and Steps)
+## Package Tutorial (How to run the code and analyze the data)
 
 ### Acquire datasets
 
@@ -35,17 +35,15 @@ Next, run the code to clean the electricity dataset, removing unnecessary column
 
 Once you have done this, run the code to merge the two datasets together. This code does not require any changing whether or not you selected different cities than we did. Now the data is in a clean and easily-analyzable format. Run the code to export the data to csv.
 
-## Analyze the data
-
 ### Explore relationship between weather and electricity price
 
 Run the analysis.py file to do the following: Import pandas, matplotlib, seaborn, numpy, sklearn, and LinearRegression, as we will be using these to analyze the data and create visuals.
 
 Check the results of the .head(), .info() and .isna().sum sure the data is read correctly.
 
-The Seaborn scatterplot gives us an idea of the relationship between precipitation and energy price. If you are following our analysis, take note of any differences you see between the Indianapolis and Phoenix price hubs, as well as any upward or downward trends.
+The Seaborn scatterplot of Precipitation vs Electricity prices gives us an idea of the relationship between precipitation and energy price. If you are following our analysis, take note of any differences you see between the Indianapolis and Phoenix price hubs, as well as any upward or downward trends.
 
-The Seaborn heatmat \[insert explanation\]
+The line graph of electricity price over time helps to give us an idea of what other variables could be affecting electricity price. Take note if certain times of year have particularly high or low prices. If prices are higher in the summer, maybe demand is high because of high temperatures, and air conditioning uses a lot of electricity. If prices are higher during the holidays, maybe that is a possible variable to look into.
 
 ### Create simple predictive model using regression
 
